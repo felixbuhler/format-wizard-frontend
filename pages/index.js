@@ -9,11 +9,14 @@ import Digital from '../components/Digital'
 const unit = 0.1;
 
 export default function Home() {
+
   return (
     <><Header />
-    <Intro />
-    <Print />
-    <Digital />
+      <main data-scroll-container>
+        <Intro />
+        <Print />
+        <Digital />
+      </main>
     </>
 
   )

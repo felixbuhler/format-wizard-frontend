@@ -8,7 +8,7 @@ function Print() {
        <section id="print">
 
             <div className='bubblewrap sticky'>
-                <h2 className='sticky bubble'>Print</h2>
+                <h2 className='sticky bubble bg-blue'>Print</h2>
             </div>
            
             

@@ -34,7 +34,7 @@ function Din() {
         <section id="din">
 
             <div className='bubblewrap sticky'>
-                <h3 className='bubble'>DIN</h3>
+                <h3 className='bubble bg-orange'>DIN</h3>
             </div>
 
             <div class="section-intro-text">
@@ -52,7 +52,7 @@ function Din() {
                                 <div class="column">
 
                                 </div>
-                                <div class="column headline">
+                                <div class="column headline ">
                                     <div className='bubblewrap sticky' >
                                         <h4 className='bubble'>{printDin?.name}</h4>
                                     </div>

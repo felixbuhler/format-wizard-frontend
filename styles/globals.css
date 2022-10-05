@@ -1,4 +1,5 @@
 @import url("https://use.typekit.net/fwb1jhr.css");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
 
 * {
   margin: 0;
@@ -12,6 +13,7 @@
   --font-text: nimbus-sans, sans-serif;
   --font-accent: bd-supper, sans-serif;
   --font-rounded: sofia-pro-soft, sans-serif;
+  --font-serif: 'Playfair Display', serif;
 
   --border-radius: 15px;
   --border: 1px solid var(--color-black);
@@ -35,6 +37,8 @@ body {
   font-size: var(--font-size-base);
   font-family: var(--font-text);
   color: var(--color-black);
+  background: var(--color-black);
+
 }
 
 h1,
@@ -65,15 +69,19 @@ h5 {
 }
 
 .serif {
-  font-family: serif;
+  font-family: var(--font-serif);
   font-style: italic;
 }
 
-[bg-blue] {
+.bg-blue {
   background: var(--color-blue) !important;
 }
 
-[bg-orange] {
+.bg-green {
+  background: var(--color-green) !important;
+}
+
+.bg-orange {
   background: var(--color-orange) !important;
 }
 
@@ -82,7 +90,7 @@ header {
   width: 30vw;
   position: fixed;
 
-  z-index: 9;
+  z-index: 999;
 }
 
 header h1 {
@@ -120,6 +128,7 @@ header bubblewrap [bubble] {
   border-radius: 0px !important;
   background: transparent;
   border-left: var(--border);
+  border-left-color: var(--color-beige);
   transform: translateY(0px);
   padding-left: 5px;
   text-align: center;
@@ -141,6 +150,7 @@ header .bubble {
   z-index: 9;
   background: white;
   font-family: sofia-pro-soft, sans-serif;
+  box-shadow: 0px 0px 15px 0px var(--color-beige);
 }
 
 .squared {
@@ -155,6 +165,7 @@ header .bubble {
 .bubblewrap {
   padding: var(--padding);
   display: block;
+  z-index: 99;
 }
 
 section>.bubblewrap,
@@ -177,13 +188,16 @@ section>section .column.headline>.bubblewrap {
   left: 20vw;
   padding-top: 0px;
   top: 50px !important;
+  position: sticky !important;
 }
 
-section {
+main>section {
   position: relative;
   min-height: 100vh;
   padding-top: 100px;
   padding-bottom: 100px;
+  background: var(--color-beige);
+  border-radius: 50px; margin-bottom: 1px;
 }
 
 section#intro {
@@ -192,18 +206,20 @@ section#intro {
   background-position: center center;
   height: auto;
   padding-top: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
   z-index: -1;
-  position: sticky;
-  top: 0px;
-  min-height: calc(100vh - 50px);
 
+  top: 0px;
+  min-height: 100vh;
+  margin-bottom: -50px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  border-radius: 0;
 }
 
 .intro-text {
-  font-size: 4em;
+  font-size: 8em;
   line-height: 1.1em;
-  bottom: 1px;
   width: 100%;
   padding-left: var(--padding);
   color: var(--color-black);
@@ -211,18 +227,17 @@ section#intro {
   padding-left: var(--padding);
   padding-right: var(--padding);
   bottom: var(--padding);
-  position: absolute;
+  position: sticky; top: 50px;
+  color: var(--color-black);
 }
 
 section#print {
-  background: var(--color-beige);
+
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }
 
-section#digital {
-  background: red;
-}
+section#digital {}
 
 section>article>article {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -250,6 +265,8 @@ section>article>article {
 
 .column.headline {
   padding: 0;
+  position: sticky;
+  top: 80px;
 }
 
 .column.text {
@@ -275,16 +292,16 @@ section>article>article {
 }
 
 .column.text:after {
+  --size: 7px;
   content: "";
-  width: calc(1.5 * var(--border-radius));
-  height: calc(1.5 * var(--border-radius));
-  background: var(--color-beige);
+  width: var(--size);
+  height: var(--size);
+  background: url(corner.svg);
+  background-size: contain;
   box-sizing: border-box;
-  box-shadow: 10px 10px 0px 0px white;
   position: absolute;
   right: 100px;
-  top: calc(-1.5 * var(--border-radius));
-  border-radius: var(--border-radius);
+  top: calc(-1*var(--size));
   z-index: -2;
 }
 
@@ -362,6 +379,7 @@ section>article>article {
   section>section .column.text>.bubblewrap {
     width: 50vw;
     top: 35px;
+
   }
 
 
@@ -380,7 +398,7 @@ section>article>article {
   }
 
   .entry {
-    padding: 20px;
+    padding: var(--padding);
   }
 
   .section-intro-text {
@@ -389,23 +407,29 @@ section>article>article {
     padding: 0px var(--padding);
   }
 
-  .column {padding: 0;}
+  .column {
+    padding: 0;
+  }
 
   .column.headline {
-    width: 100vw;
+    width: 100%;
     left: 0;
     margin-left: 0;
     margin-bottom: 40px;
   }
 
+  section>section .column.headline {
+    z-index: 99;
+  }
+
   section>section .column.headline>.bubblewrap {
     left: 0vw;
-    padding-top: 0px;
+    padding: 0px;
     top: 80px !important;
   }
 
   .entry-content {
-    grid-template-columns: 100vw;
+    grid-template-columns: 100%;
     padding: 0;
   }
 }
