@@ -187,8 +187,23 @@ section>section>.bubblewrap {
 section>section .column.headline>.bubblewrap {
   left: 20vw;
   padding-top: 0px;
-  top: 50px !important;
-  position: sticky !important;
+  top: 45px !important;
+  white-space: nowrap;
+  overflow-x: hidden !important;
+}
+
+section>section .column.headline>.bubblewrap:after {
+  width: 20px;
+  height: 25px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  content: "";
+  position: absolute;
+  right: var(--padding);
+  top: 0;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 75%);
+  display: block;
 }
 
 main>section {
@@ -197,7 +212,8 @@ main>section {
   padding-top: 100px;
   padding-bottom: 100px;
   background: var(--color-beige);
-  border-radius: 50px; margin-bottom: 1px;
+  border-radius: 50px;
+  margin-bottom: 1px;
 }
 
 section#intro {
@@ -212,23 +228,22 @@ section#intro {
   top: 0px;
   min-height: 100vh;
   margin-bottom: -50px;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  background: var(--color-purple);
+  background: url(https://media0.giphy.com/media/wJ5n3xTn0JAt93vb2e/giphy.gif?cid=790b76111cf4c7a0c090c275970f201a53998d1ac58aeec2&rid=giphy.gif&ct=g);
+  background-size: cover;
   border-radius: 0;
 }
 
 .intro-text {
-  font-size: 8em;
+  font-size: 5em;
   line-height: 1.1em;
   width: 100%;
-  padding-left: var(--padding);
-  color: var(--color-black);
+  padding: var(--padding);
   font-weight: 400;
-  padding-left: var(--padding);
-  padding-right: var(--padding);
   bottom: var(--padding);
-  position: sticky; top: 50px;
-  color: var(--color-black);
+  position: sticky;
+  top: 50px;
+  color: white;
 }
 
 section#print {

@@ -1,5 +1,6 @@
 import React from 'react'
 import Instagram from './Instagram'
+import TikTok from './Tiktok'
 
 function Digital() {
   return (
@@ -12,6 +13,7 @@ function Digital() {
             
            
             <Instagram />
+            <TikTok />
         </section>
   )
 }

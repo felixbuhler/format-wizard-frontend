@@ -9,10 +9,10 @@ const client = createClient({
     useCdn: false
 });
 
-const digitalInstagram = await client.fetch(`*[_type == "digitalInstagram"]`);
+const digitalTikTok = await client.fetch(`*[_type == "digitalTikTok"]`);
 
 export async function getStaticProps() {
-    const digitalInstagram = [
+    const digitalTikTok = [
         /* {
           _createdAt: "2022-03-08T09:28:00Z",
           _id: "1f69c53d-418a-452f-849a-e92466bb9c75",
@@ -25,7 +25,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            digitalInstagram
+            digitalTikTok
         }
     };
 }
@@ -33,7 +33,7 @@ export async function getStaticProps() {
 
 
 
-function Instagram() {
+function TikTok() {
 
 
 
@@ -41,7 +41,7 @@ function Instagram() {
         <section id="instagram">
 
             <div className='bubblewrap sticky'>
-                <h3 className='bubble'>Instagram</h3>
+                <h3 className='bubble'>TikTok</h3>
             </div>
 
             <div class="section-intro-text">
@@ -59,10 +59,10 @@ function Instagram() {
             </div>
 
 
-            {digitalInstagram.length > 0 && (
+            {digitalTikTok.length > 0 && (
                 <>
-                    {digitalInstagram.map((digitalInstagram) => (
-                        <article className='entry' key={digitalInstagram._id}>
+                    {digitalTikTok.map((digitalTikTok) => (
+                        <article className='entry' key={digitalTikTok._id}>
 
 
                             <div class="entry-content">
@@ -71,61 +71,61 @@ function Instagram() {
                                 </div>
                                 <div class="column headline">
                                     <div className='bubblewrap sticky' >
-                                        <h4 className='bubble'>{digitalInstagram?.name}</h4>
+                                        <h4 className='bubble'>{digitalTikTok?.name}</h4>
                                     </div>
                                 </div>
                                 <div class="column text">
                                     <div class="text-column">
-                                        <div class="paper A4" style={{ width: digitalInstagram?.width * process.env.unitSize + "px", height: digitalInstagram?.height * process.env.unitSize + "px" }}></div>
+                                        <div class="paper A4" style={{ width: digitalTikTok?.width * process.env.unitSize + "px", height: digitalTikTok?.height * process.env.unitSize + "px" }}></div>
                                     </div>
                                     <div class="text-column">
-                                        <h5>{digitalInstagram?.name}</h5>
+                                        <h5>{digitalTikTok?.name}</h5>
                                         <div class="info">
                                             <h6>Recommended Size</h6>
-                                            <p>{digitalInstagram?.width} &times; {digitalInstagram?.height} px</p>
+                                            <p>{digitalTikTok?.width} &times; {digitalTikTok?.height} px</p>
                                         </div>
                                         <div class="info">
                                             <h6>Aspect Ratio</h6>
-                                            <p>{digitalInstagram?.aspectRatio}</p>
+                                            <p>{digitalTikTok?.aspectRatio}</p>
                                         </div>
 
 
-                                        {digitalInstagram?.colorSpace > 0 && (
+                                        {digitalTikTok?.colorSpace > 0 && (
 
                                             <div class="info">
                                                 <h6>Frames Per Second</h6>
-                                                <p>{digitalInstagram?.colorSpace} fps</p>
+                                                <p>{digitalTikTok?.colorSpace} fps</p>
                                             </div>
                                         )}
 
 
 
-                                        {digitalInstagram?.lengthSec > 0 && (
+                                        {digitalTikTok?.lengthSec > 0 && (
                                             <div class="info">
                                                 <h6>Length</h6>
-                                                <p>{digitalInstagram?.lengthSec} Seconds</p>
+                                                <p>{digitalTikTok?.lengthSec} Seconds</p>
                                             </div>
                                         )}
-                                        {digitalInstagram?.fps > 0 && (
+                                        {digitalTikTok?.fps > 0 && (
 
                                             <div class="info">
                                                 <h6>Frames Per Second</h6>
-                                                <p>{digitalInstagram?.fps} fps</p>
+                                                <p>{digitalTikTok?.fps} fps</p>
                                             </div>
                                         )}
-                                        {digitalInstagram?.maxFileSize > 0 && (
+                                        {digitalTikTok?.maxFileSize > 0 && (
 
                                             <div class="info">
                                                 <h6>Max. File Size</h6>
-                                                <p>{digitalInstagram?.maxFileSize}</p>
+                                                <p>{digitalTikTok?.maxFileSize}</p>
                                             </div>
                                         )}
 
-                                        {digitalInstagram?.helpfulLinks > 0 && (
+                                        {digitalTikTok?.helpfulLinks > 0 && (
 
                                             <div class="info">
                                                 <h6>Helpful Content</h6>
-                                                <p>{digitalInstagram?.helpfulLinks}</p>
+                                                <p>{digitalTikTok?.helpfulLinks}</p>
                                             </div>
                                         )}
                                     </div>
@@ -139,7 +139,7 @@ function Instagram() {
                     ))}
                 </>
             )}
-            {!digitalInstagram.length > 0 && <p>No animals to show</p>}
+            {!digitalTikTok.length > 0 && <p>No animals to show</p>}
 
 
         </section>
@@ -148,4 +148,4 @@ function Instagram() {
 
 
 
-export default Instagram;
+export default TikTok;

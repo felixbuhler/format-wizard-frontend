@@ -48,36 +48,36 @@ function Din() {
                         <article className='entry' key={printDin._id}>
 
 
-                            <div class="entry-content">
-                                <div class="column">
+                            <div className='entry-content'>
+                                <div className='column'>
 
                                 </div>
-                                <div class="column headline ">
+                                <div className='column headline'>
                                     <div className='bubblewrap sticky' >
                                         <h4 className='bubble'>{printDin?.name}</h4>
                                     </div>
                                 </div>
-                                <div class="column text">
-                                    <div class="text-column">
-                                        <div class="paper A4" style={{ width: printDin?.width * process.env.unitSize + "px", height: printDin?.height * process.env.unitSize + "px" }}></div>
+                                <div className='column text'>
+                                    <div className='text-column'>
+                                        <div className='paper' style={{ width: printDin?.width * process.env.unitSize + "px", height: printDin?.height * process.env.unitSize + "px" }}></div>
                                     </div>
-                                    <div class="text-column">
+                                    <div className='text-column'>
                                         <h5>{printDin?.name}</h5>
-                                        <div class="info">
+                                        <div className='info'>
                                             <h6>Size</h6>
                                             <p>{printDin?.width} &times; {printDin?.height} mm</p>
                                         </div>
-                                        <div class="info">
+                                        <div className='info'>
                                             <h6>Usage</h6>
                                             <p>{printDin?.usage}</p>
                                         </div>
-                                        <div class="info">
+                                        <div className='info'>
                                             <h6>Pixel at 300 dpi</h6>
                                             <p>{printDin?.pixelWidth} &times; {printDin?.pixelHeight} px</p>
                                         </div>
-                                        <div class="info">
-                                            <h6>Area in sqm</h6>
-                                            <p>XXX</p>
+                                        <div className='info'>
+                                            <h6>Example Projects</h6>
+                                            <p>{printDin?.exampleProjects}</p>
                                         </div>
                                     </div>
 
@@ -90,7 +90,7 @@ function Din() {
                     ))}
                 </>
             )}
-            {!printDin.length > 0 && <p>No animals to show</p>}
+            {!printDin.length > 0 && <p>:—(</p>}
 
 
         </section>
