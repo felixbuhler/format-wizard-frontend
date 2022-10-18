@@ -13,7 +13,7 @@ const printDin = await client.fetch(`*[_type == "printDin"]`);
 
 export async function getStaticProps() {
     const printDin = [
-       
+
     ];
 
     return {
@@ -29,6 +29,10 @@ export async function getStaticProps() {
 function Din() {
 
 
+    
+
+   
+
 
     return (
         <section id="din">
@@ -43,9 +47,14 @@ function Din() {
 
 
             {printDin.length > 0 && (
+
+
+
                 <>
+
+                
                     {printDin.map((printDin) => (
-                        <article className='entry' key={printDin._id}>
+                        <article className='entry' id={printDin?.name.replace(/\s+/g, '-').toLowerCase()}>
 
 
                             <div className='entry-content'>

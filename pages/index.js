@@ -12,7 +12,8 @@ export default function Home() {
 
   return (
     <><Header />
-      <main data-scroll-container>
+
+      <main>
         <Intro />
         <Print />
         <Digital />

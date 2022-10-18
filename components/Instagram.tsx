@@ -62,7 +62,7 @@ function Instagram() {
             {digitalInstagram.length > 0 && (
                 <>
                     {digitalInstagram.map((digitalInstagram) => (
-                        <article className='entry' key={digitalInstagram._id}>
+                        <article className='entry' id={digitalInstagram?.name.replace(/\s+/g, '-').toLowerCase()}>
 
 
                             <div class="entry-content">
@@ -76,7 +76,12 @@ function Instagram() {
                                 </div>
                                 <div class="column text">
                                     <div class="text-column">
-                                        <div class="paper A4" style={{ width: digitalInstagram?.width * process.env.unitSize + "px", height: digitalInstagram?.height * process.env.unitSize + "px" }}></div>
+                                        <div class="paper A4" style={{ width: digitalInstagram?.width * process.env.unitSize + "px", height: digitalInstagram?.height * process.env.unitSize + "px" }}>
+                                            {digitalInstagram?.saveSpaceTop > 0 && (<div className='save-space save-space-top' style={{ top: digitalInstagram?.saveSpaceTop * process.env.unitSize + "px" }}></div>)}
+                                            {digitalInstagram?.saveSpaceBottom > 0 && (<div className='save-space save-space-bottom' style={{ bottom: digitalInstagram?.saveSpaceBottom * process.env.unitSize + "px" }}></div>)}
+                                            {digitalInstagram?.saveSpaceLeft > 0 && (<div className='save-space save-space-left' style={{ left: digitalInstagram?.saveSpaceLeft * process.env.unitSize + "px" }}></div>)}
+                                            {digitalInstagram?.saveSpaceRight > 0 && (<div className='save-space save-space-right' style={{ right: digitalInstagram?.saveSpaceRight * process.env.unitSize + "px" }}></div>)}
+                                        </div>
                                     </div>
                                     <div class="text-column">
                                         <h5>{digitalInstagram?.name}</h5>
@@ -84,6 +89,21 @@ function Instagram() {
                                             <h6>Recommended Size</h6>
                                             <p>{digitalInstagram?.width} &times; {digitalInstagram?.height} px</p>
                                         </div>
+
+                                        {digitalInstagram?.saveSpace == true && (
+
+                                            <div class="info">
+                                                <h6>Save Space</h6>
+                                                <p>
+                                                    Top: {digitalInstagram?.saveSpaceTop} px <br />
+                                                    Bottom: {digitalInstagram?.saveSpaceBottom} px <br />
+                                                    Left: {digitalInstagram?.saveSpaceLeft} px <br />
+                                                    Right: {digitalInstagram?.saveSpaceRight} px <br />
+                                                </p>
+                                            </div>
+                                        )}
+
+
                                         <div class="info">
                                             <h6>Aspect Ratio</h6>
                                             <p>{digitalInstagram?.aspectRatio}</p>
