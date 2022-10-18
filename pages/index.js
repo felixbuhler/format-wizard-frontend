@@ -11,14 +11,19 @@ const unit = 0.1;
 export default function Home() {
 
   return (
-    <><Header />
 
-      <main>
-        <Intro />
-        <Print />
-        <Digital />
-      </main>
-    </>
+    <><Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    </Head><>
+    
+    <Header />
+
+        <main>
+          <Intro />
+          <Print />
+          <Digital />
+        </main>
+      </></>
 
   )
 }
