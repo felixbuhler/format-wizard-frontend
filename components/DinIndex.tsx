@@ -40,7 +40,7 @@ function DinIndex() {
 
                     {printDin.map((printDin) => (
 
-                        <div>{printDin?.name}</div>
+                        <div key={printDin._id}>{printDin?.name}</div>
 
 
 

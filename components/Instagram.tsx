@@ -62,7 +62,7 @@ function Instagram() {
             {digitalInstagram.length > 0 && (
                 <>
                     {digitalInstagram.map((digitalInstagram) => (
-                        <article className='entry' id={digitalInstagram?.name.replace(/\s+/g, '-').toLowerCase()}>
+                        <article className='entry' id={digitalInstagram?.name.replace(/\s+/g, '-').toLowerCase()}  key={digitalInstagram._id}>
 
 
                             <div class="entry-content">

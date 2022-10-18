@@ -54,7 +54,7 @@ function Din() {
 
                 
                     {printDin.map((printDin) => (
-                        <article className='entry' id={printDin?.name.replace(/\s+/g, '-').toLowerCase()}>
+                        <article className='entry' id={printDin?.name.replace(/\s+/g, '-').toLowerCase()} key={printDin._id}>
 
 
                             <div className='entry-content'>
