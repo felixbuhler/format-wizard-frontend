@@ -1,5 +1,7 @@
 import React from 'react'
-import { createClient } from "next-sanity";
+import { createClient } from "next-sanity"
+import Link from 'next/link'
+import {animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 const client = createClient({
@@ -27,7 +29,12 @@ export async function getStaticProps() {
 
 
 function DinIndex() {
+
+   
     return (
+
+        
+
         <section>
 
 
@@ -40,8 +47,7 @@ function DinIndex() {
 
                     {printDin.map((printDin) => (
 
-                        <div key={printDin._id}>{printDin?.name}</div>
-
+                        <><div key={printDin._id}></div><Link smooth={true} href={`#${printDin?.name.replace(/\s+/g, '-').toLowerCase()}`}>{printDin?.name}</Link></>
 
 
                     ))}
