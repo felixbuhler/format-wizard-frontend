@@ -1,7 +1,7 @@
 import React from 'react'
 import { createClient } from "next-sanity"
+import { useState } from 'react';
 import Link from 'next/link'
-import {animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 
 const client = createClient({
@@ -27,13 +27,13 @@ export async function getStaticProps() {
 
 
 
-
 function DinIndex() {
 
-   
+  
+
     return (
 
-        
+
 
         <section>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createClient } from "next-sanity";
-
+import { PortableText } from '@portabletext/react'
 
 const client = createClient({
     projectId: "w9dvy0j8",
@@ -62,7 +62,7 @@ function Instagram() {
             {digitalInstagram.length > 0 && (
                 <>
                     {digitalInstagram.map((digitalInstagram) => (
-                        <article className='entry' id={digitalInstagram?.name.replace(/\s+/g, '-').toLowerCase()}  key={digitalInstagram._id}>
+                        <article className='entry' id={digitalInstagram?.name.replace(/\s+/g, '-').toLowerCase()} key={digitalInstagram._id}>
 
 
                             <div class="entry-content">
@@ -86,7 +86,7 @@ function Instagram() {
                                     <div class="text-column">
                                         <h5>{digitalInstagram?.name}</h5>
                                         <div class="info">
-                                            <h6>Recommended Size</h6>
+                                            <h6>Recommended Size in Pixel</h6>
                                             <p>{digitalInstagram?.width} &times; {digitalInstagram?.height} px</p>
                                         </div>
 
@@ -104,28 +104,35 @@ function Instagram() {
                                         )}
 
 
-                                        <div class="info">
-                                            <h6>Aspect Ratio</h6>
-                                            <p>{digitalInstagram?.aspectRatio}</p>
-                                        </div>
 
 
-                                        {digitalInstagram?.colorSpace > 0 && (
+                                        {digitalInstagram?.aspectRatio && (digitalInstagram?.aspectRatio.length !== 0) && (
 
                                             <div class="info">
-                                                <h6>Frames Per Second</h6>
-                                                <p>{digitalInstagram?.colorSpace} fps</p>
+                                                <h6>Aspect Ratio</h6>
+                                                <p>{digitalInstagram?.aspectRatio}</p>
                                             </div>
                                         )}
 
 
 
-                                        {digitalInstagram?.lengthSec > 0 && (
+                                        {digitalInstagram?.colorSpace && (digitalInstagram?.colorSpace.length !== 0) && (
+
+                                            <div class="info">
+                                                <h6>Color Space</h6>
+                                                <p>{digitalInstagram?.colorSpace}</p>
+                                            </div>
+                                        )}
+
+
+                                        {digitalInstagram?.lengthSec && (digitalInstagram?.lengthSec.length !== 0) && (
+
                                             <div class="info">
                                                 <h6>Length</h6>
-                                                <p>{digitalInstagram?.lengthSec} Seconds</p>
+                                                <p>{digitalInstagram?.lengthSec}</p>
                                             </div>
                                         )}
+
                                         {digitalInstagram?.fps > 0 && (
 
                                             <div class="info">
@@ -133,19 +140,36 @@ function Instagram() {
                                                 <p>{digitalInstagram?.fps} fps</p>
                                             </div>
                                         )}
-                                        {digitalInstagram?.maxFileSize > 0 && (
+                                        {digitalInstagram?.maxFileSize && (digitalInstagram?.maxFileSize.length !== 0) && (
 
                                             <div class="info">
                                                 <h6>Max. File Size</h6>
                                                 <p>{digitalInstagram?.maxFileSize}</p>
                                             </div>
                                         )}
-
-                                        {digitalInstagram?.helpfulLinks > 0 && (
+                                        {digitalInstagram?.videoCodec && (digitalInstagram?.videoCodec.length !== 0) && (
 
                                             <div class="info">
-                                                <h6>Helpful Content</h6>
-                                                <p>{digitalInstagram?.helpfulLinks}</p>
+                                                <h6>Video Codec</h6>
+                                                <p>{digitalInstagram?.videoCodec}</p>
+                                            </div>
+                                        )}
+                                        {digitalInstagram?.audioCodec && (digitalInstagram?.audioCodec.length !== 0) && (
+
+                                            <div class="info">
+                                                <h6>Audio Codec</h6>
+
+                                                <p><PortableText
+                                                    blocks={digitalInstagram?.audioCodec}
+                                                    
+                                                /></p>
+                                            </div>
+                                        )}
+                                        {digitalInstagram?.furtherInformation && (digitalInstagram?.furtherInformation.length !== 0) && (
+
+                                            <div class="info">
+                                                <h6>Further Information</h6>
+                                                <p>{digitalInstagram?.furtherInformation}</p>
                                             </div>
                                         )}
                                     </div>

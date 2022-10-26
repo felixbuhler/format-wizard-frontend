@@ -29,9 +29,9 @@ export async function getStaticProps() {
 function Din() {
 
 
-    
 
-   
+
+
 
 
     return (
@@ -52,7 +52,7 @@ function Din() {
 
                 <>
 
-                
+
                     {printDin.map((printDin) => (
                         <article className='entry' id={printDin?.name.replace(/\s+/g, '-').toLowerCase()} key={printDin._id}>
 
@@ -76,18 +76,29 @@ function Din() {
                                             <h6>Size</h6>
                                             <p>{printDin?.width} &times; {printDin?.height} mm</p>
                                         </div>
+
+
+                                        {printDin?.usage && (printDin?.usage.length !== 0) && (
+
+                                            <div className='info'>
+                                                <h6>Usage</h6>
+                                                <p>{printDin?.usage}</p>
+                                            </div>
+                                        )}
+
                                         <div className='info'>
-                                            <h6>Usage</h6>
-                                            <p>{printDin?.usage}</p>
-                                        </div>
-                                        <div className='info'>
-                                            <h6>Pixel at 300 dpi</h6>
+                                            <h6>Pixel at <br></br> 300 dpi</h6>
                                             <p>{printDin?.pixelWidth} &times; {printDin?.pixelHeight} px</p>
                                         </div>
-                                        <div className='info'>
-                                            <h6>Example Projects</h6>
-                                            <p>{printDin?.exampleProjects}</p>
-                                        </div>
+
+
+                                        {printDin?.exampleProjects && (printDin?.exampleProjects.length !== 0) && (
+
+                                            <div className='info'>
+                                                <h6>Example Projects</h6>
+                                                <p>{printDin?.exampleProjects}</p>
+                                            </div>
+                                        )}
                                     </div>
 
 

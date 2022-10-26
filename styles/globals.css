@@ -93,7 +93,7 @@ h5 {
 header {
   width: 30vw;
   position: fixed;
-
+  overflow: hidden;
   z-index: 999;
 }
 
@@ -107,6 +107,7 @@ header bubblewrap [bubble] {
 }
 
 .header {
+  overflow: hidden !important;
 
   width: 100%;
 }
@@ -118,29 +119,43 @@ header bubblewrap [bubble] {
 }
 
 .header>*:first-child {
-  width: 70%;
+  width: 75%;
 }
 
 .header>*:nth-child(2) {
-  width: 25%;
-}
-
-.header select {
-  appearance: none;
-  border: none;
-  height: 100%;
-  border-radius: 0px !important;
-  background: transparent;
-  border-left: var(--border);
-  border-left-color: var(--color-beige);
-  transform: translateY(0px);
-  padding-left: 5px;
-  text-align: center;
+  width: 25%; text-align: right;
 }
 
 header .bubble {
   padding: 0px;
   padding-left: 5px;
+}
+
+header button {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  border: none;
+  background: white;
+  font-family: var(--font-rounded);
+  font-weight: bold;
+  height: 25px !important;
+  cursor: pointer;
+  transform: translateX(3px);
+  text-align: right;
+  width: auto !important;
+  display: inline-block;
+  padding: 0 10px; float: right;
+  text-transform: uppercase;
+}
+
+header button:hover {
+  background: #ededed;
 }
 
 .bubble {
@@ -154,7 +169,7 @@ header .bubble {
   z-index: 9;
   background: white;
   font-family: sofia-pro-soft, sans-serif;
-  box-shadow: 0px 0px 15px 0px var(--color-beige);
+  box-shadow: 0px 0px 5px 0px var(--color-beige);
   overflow: auto;
 }
 
@@ -234,8 +249,9 @@ section#intro {
   min-height: 100vh;
   margin-bottom: -50px;
   background: var(--color-purple);
-  background: url(https://media0.giphy.com/media/wJ5n3xTn0JAt93vb2e/giphy.gif?cid=790b76111cf4c7a0c090c275970f201a53998d1ac58aeec2&rid=giphy.gif&ct=g);
+  background: url(https://images.unsplash.com/photo-1610209455607-89e8b3e0e393?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80);
   background-size: cover;
+  background-position: center center;
   border-radius: 0;
 }
 
@@ -465,6 +481,11 @@ section>article>article {
 
 
 @media (max-width: 820px) {
+
+  h5 {
+    font-size: 2em;
+  }
+
   header {
     width: 100vw;
   }
@@ -504,6 +525,18 @@ section>article>article {
     width: 100vw;
     margin-left: 0;
     padding: 0px var(--padding);
+  }
+
+  .intro-text {
+    font-size: 3em;
+    line-height: 1.1em;
+    width: 100%;
+    padding: var(--padding);
+    font-weight: 400;
+    bottom: var(--padding);
+    position: sticky;
+    top: 50px;
+    color: white;
   }
 
   .column {

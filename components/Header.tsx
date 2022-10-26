@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import DinIndex from './DinIndex';
+import InstagramIndex from './InstagramIndex';
 
 
 function Header() {
@@ -19,7 +20,7 @@ function Header() {
         <div className='bubblewrap sticky'>
           <div className='header bubble squared'>
             <h1>FORMAT WIZARD</h1>
-            <button onClick={handleClick}>Toggle Index</button>
+            <button onClick={handleClick}>📖 Index</button>
           </div>
 
 
@@ -36,7 +37,7 @@ function Header() {
           <DinIndex />
           <h3>Digital</h3>
           <h4>Instagram</h4>
-          <DinIndex />
+          <InstagramIndex />
           <h4>TikTok</h4>
           <DinIndex />
         </div></div></>
