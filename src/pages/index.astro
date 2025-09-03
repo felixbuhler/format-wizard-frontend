@@ -1,16 +1,82 @@
 ---
-
+import Intro from "../components/Intro/Intro.astro";
+import Medium from "../components/Formats/Medium.astro";
+import Header from "@components/Site/Header.astro";
+import Footer from "@components/Site/Footer.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Header />
+    <Intro />
+    <Medium />
+    <Footer />
+  </body>
 </html>
+
+<style is:global>
+  @font-face {
+    font-family: Martian;
+    src: url(/fonts/MartianMono_SemiCondensed-Light.ttf);
+  }
+
+  @font-face {
+    font-family: National Park;
+    src: url(/fonts/NationalPark-Bold.ttf);
+  }
+
+  @font-face {
+    font-family: Material Icons;
+    src: url(/fonts/MaterialSymbolsRounded_48pt-Bold.ttf);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    /* Colors */
+    --color-white: #ffcd93;
+    --color-black: #181818;
+
+    /* */
+    --padding: 10px;
+    --padding-gap: 5px;
+
+    --border-radius-tiny: 5px;
+    --border-radius: 15px;
+    --border-radius-tall: 35px;
+
+    --header-height: 50px;
+
+    /* Fonts */
+    --font-mono: "Martian", monospace;
+    --font-round: ;
+    --font-icon: "Material Icons";
+  }
+
+  body {
+    font-size: 13px;
+    font-family: var(--font-mono);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal;
+    font-size: inherit;
+    font-family: "National Park", sans-serif;
+  }
+</style>

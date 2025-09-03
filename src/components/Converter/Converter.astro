@@ -1,0 +1,111 @@
+---
+
+---
+
+<section id="calculator" style="--medium-color: red;" class="medium">
+  <div class="converter">
+    Convert <input
+      value="210"
+      id="converter-mm"
+      class="converter-input"
+      type="number"
+    /> mm to Pixel at 300 DPI &rarr;
+    <button class="copy px" data-copy="210"></button> px
+  </div>
+</section>
+
+<style>
+  .converter {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .copy {
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+  .copy:after {
+    content: "";
+    font-size: 0.6em;
+    font-weight: bold;
+    margin-left: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .copy.px {
+    margin-right: -0.5em;
+  }
+
+  @keyframes copied {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0% 15%;
+    }
+  }
+
+  .copied:after {
+    content: "copied";
+    animation: copied 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .converter-input {
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+
+    width: 7em;
+    padding-bottom: 0.5em;
+    outline: none;
+    border: none;
+    padding: 0.25em 0.5em;
+    padding-left: 1em;
+    border-radius: 4px;
+background: rgba(0, 0, 0, 0.1);
+    margin-right: -0.5em;
+  }
+</style>
+
+<script>
+  const input = document.getElementById("converter-mm");
+  const button = document.querySelector(".converter .copy.px");
+
+  function mmToPx(mm) {
+    return Math.round((mm / 25.4) * 300); // 1 inch = 25.4 mm
+  }
+
+  function updateButton() {
+    const mm = parseFloat(input.value);
+    if (!isNaN(mm)) {
+      const px = mmToPx(mm);
+      button.textContent = `${px}`;
+      button.setAttribute("data-copy", px);
+    }
+  }
+
+  updateButton();
+  input.addEventListener("input", updateButton);
+
+  addEventListener("load", (event) => {
+    const mm = parseFloat(e.target.value);
+    if (!isNaN(mm)) {
+      const px = mmToPx(mm);
+      button.textContent = `${px}`;
+      button.setAttribute("data-copy", px);
+    }
+  });
+</script>

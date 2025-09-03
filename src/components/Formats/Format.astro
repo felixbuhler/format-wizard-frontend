@@ -1,0 +1,27 @@
+---
+import Content from "./Content.astro";
+
+const { content } = Astro.props;
+
+const title = content?.name || "No Title";
+const slug = content?.slug
+---
+
+<article id={slug} class="format">
+  <h4 class="bubble sticky">{title}</h4>
+  <Content content={content}/>
+</article>
+
+<style>
+  .format {
+    border-radius: var(--border-radius);
+    min-height: 100px;
+    display: flex;
+    gap: var(--padding);
+  }
+
+  .bubble {
+    flex: 0 0 var(--column-width);
+    --bubble-color: white;
+  }
+</style>

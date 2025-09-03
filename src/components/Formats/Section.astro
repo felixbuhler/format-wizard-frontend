@@ -1,0 +1,59 @@
+---
+import Format from "./Format.astro";
+
+const { section } = Astro.props;
+
+
+const title = section?.name || "No title";
+const color = section?.color?.hex || "#ff00ff";
+const formats = section?.formats || [];
+const slug = section?.slug.current
+---
+
+<section id={slug} class="section">
+  <div class="column headline">
+    <h3 class="sticky bubble" style=`--bubble-color: ${color}`>
+      {title}
+    </h3>
+  </div>
+  <div class="columns">
+    <div class="formats">
+     {formats.length > 0 ? (
+      formats.map((format: unknown) => (
+       <Format content={format}/>
+      ))
+    ) : (
+      <h4 class="bubble" style="--bubble-color: white;">No formats found</h4>
+    )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    display: flex;
+    gap: var(--padding);
+    width: 100%;
+  }
+
+  .headline {
+    flex: 0 0 var(--column-width);
+  }
+
+  h3 {
+    text-transform: capitalize;
+    display: inline-block;
+    height: fit-content;
+    width: 100%;
+  }
+
+  .formats {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--tab-size) + var(--padding));
+  }
+  .headline .bubble {
+    background: linear-gradient(165deg, white 40%, var(--bubble-color) 100%);
+    box-shadow: inset 0px 0px 5px var(--bubble-color);
+  }
+</style>

@@ -1,0 +1,319 @@
+---
+const { content } = Astro.props;
+
+const title = content?.name;
+
+import { PortableText } from "astro-portabletext";
+---
+
+<div class="content">
+  <div class="column artwork">
+    <div
+      class="canvas"
+      style=`--canvas-width: ${content?.size?.sizePrint?.widthMM}; --canvas-height: ${content?.size?.sizePrint?.heightMM}; `
+    >
+    </div>
+  </div>
+  <div class="column info">
+    <h4>{title}</h4>
+
+    {
+      content?.size?.unit === false && (
+        // False = Digital
+        <p>❌</p>
+      )
+    }
+
+    {
+      content.size?.unit === true && (
+        // True = Print
+        <div class="measurement-list">
+          {/* Size in Millimeter */}
+          <div class="measurement">
+            <label>Size in Millimeter</label>
+            <div class="numbers">
+              <button
+                class="copy"
+                data-copy={content?.size?.sizePrint?.widthMM}
+              >
+                {content?.size?.sizePrint?.widthMM}
+              </button>{" "}
+              &times;{" "}
+              <button
+                class="copy"
+                data-copy={content?.size?.sizePrint?.heightMM}
+              >
+                {content?.size?.sizePrint?.heightMM}
+              </button>{" "}
+              mm
+            </div>
+          </div>
+          {/* Size in Pixel */}
+          <div class="measurement">
+            <label>Size in Pixel at 300 DPI</label>
+            <div class="numbers">
+              <button
+                class="copy"
+                data-copy={content?.size?.sizePrint?.widthPX}
+              >
+                {content?.size?.sizePrint?.widthPX}
+              </button>{" "}
+              &times;{" "}
+              <button
+                class="copy"
+                data-copy={content?.size?.sizePrint?.heightPX}
+              >
+                {content?.size?.sizePrint?.heightPX}
+              </button>{" "}
+              px
+            </div>
+          </div>
+          {/* Aspect Ratio */}
+          <div class="measurement">
+            <label>Aspect Ratio</label>
+            <div class="numbers aspect-ratio">
+              1:
+              <button
+                class="copy"
+                data-copy={(
+                  content?.size?.sizePrint?.heightPX /
+                  content?.size?.sizePrint?.widthPX
+                ).toFixed(2)}
+              >
+                {(
+                  content?.size?.sizePrint?.heightPX /
+                  content?.size?.sizePrint?.widthPX
+                ).toFixed(2)}
+              </button>
+            </div>
+          </div>
+          {/* Use Cases */}
+          <div class="measurement align-top">
+            <label>Use Cases</label>
+            <div class="numbers use-cases">
+              {content.tags?.map((tag) => (
+                <span class="tag">{tag.label}</span>
+              ))}
+            </div>
+          </div>
+          {/* Additional Information */}
+
+          {content.info && (
+            <div class="measurement align-top">
+              <label>Additional Information</label>
+              <div class="numbers additional-info">
+                {content.info?.map((info) => (
+                  <div class="additional-info-single">
+                    <div class="icon">{info?.icon}</div>
+                    <PortableText value={info?.text} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {/* Close */}
+        </div>
+      )
+    }
+    <!-- Size in Pixel at 300 DPI -->
+    <!-- Size in Pixel -->
+    <!-- Usage -->
+  </div>
+</div>
+
+<style>
+  .content {
+    background: white;
+    flex: 0 0 calc(70vw - 3 * var(--column-width));
+    border-radius: var(--border-radius);
+    border-top-right-radius: 0;
+    position: relative;
+    padding: var(--border-radius-tall);
+    display: flex;
+    gap: var(--border-radius-tall);
+  }
+
+  .content:before,
+  .content:after {
+    content: "";
+    background: white;
+    position: absolute;
+    top: calc(-1 * var(--tab-size));
+  }
+
+  .content:before {
+    width: var(--tab-width);
+    height: var(--tab-size);
+    right: 0;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+  }
+
+  .content:after {
+    width: calc(0.75 * var(--tab-size));
+    height: calc(0.75 * var(--tab-size));
+    top: calc(-0.75 * var(--tab-size));
+    background: transparent;
+    right: var(--tab-width);
+    border-radius: 100%;
+    outline: 20px solid white;
+    clip-path: polygon(
+      50% 50%,
+      50% 100%,
+      100% 100%,
+      100% 50% /* Mitte rechts */
+    );
+  }
+
+  .artwork {
+    width: 75%;
+    max-width: 400px;
+    height: auto;
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .canvas {
+    --factor: 0.25px;
+    border: 1px solid black;
+    width: calc(var(--factor) * var(--canvas-width));
+    height: calc(var(--factor) * var(--canvas-height));
+  }
+
+  .canvas:after {
+    content: " ";
+    display: block;
+    width: 100px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    position: absolute;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      -90deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    z-index: 9;
+  }
+
+  .info {
+    width: 100%;
+  }
+
+  .numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .additional-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+  }
+
+  .additional-info-single {
+    display: flex;
+    gap: var(--padding);
+  }
+
+  .icon {
+    font-family: var(--font-icon);
+    width: 3em;
+  }
+
+  .use-cases {
+    display: block;
+  }
+  .use-cases span:after {
+    content: ", ";
+  }
+  .use-cases span:last-child:after {
+    content: "";
+  }
+
+  .measurement {
+    display: flex;
+    gap: var(--padding);
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 1em 0em;
+    line-height: 1.5em;
+  }
+
+  .measurement > * {
+    width: 50%;
+  }
+
+  .measurement:last-child {
+    border: none;
+  }
+
+  .align-top {
+    align-items: flex-start;
+  }
+
+  .copy {
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+  }
+
+  .aspect-ratio .copy {
+    margin-left: -0.25em;
+  }
+
+  .copy:after {
+    content: "";
+    font-size: 0.6em;
+    font-weight: bold;
+    margin-left: 0.3em;
+    text-transform: uppercase;
+  }
+
+  @keyframes copied {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0% 15%;
+    }
+  }
+
+  .copied:after {
+    content: "copied";
+    animation: copied 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+</style>
+
+<script>
+  document.addEventListener("click", async (e) => {
+    const target = e.target as HTMLElement;
+    if (target.matches(".copy")) {
+      const text = target.getAttribute("data-copy");
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        target.classList.add("copied");
+        setTimeout(() => {
+          target.classList.remove("copied");
+        }, 1500);
+      } catch (err) {
+        console.error("Kopieren fehlgeschlagen:", err);
+      }
+    }
+  });
+</script>

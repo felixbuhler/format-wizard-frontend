@@ -1,0 +1,136 @@
+---
+import { getFormats } from "../../lib/sanityClient";
+
+import Section from "./Section.astro";
+import Converter from "../Converter/Converter.astro";
+const mediums = await getFormats();
+
+import { PortableText } from "astro-portabletext";
+---
+
+<main>
+<Converter />
+  {
+    mediums.map(
+      (medium: {
+        [x: string]: any;
+        slug: { current: string | null | undefined };
+        name: unknown;
+        description: any;
+        sections: any[];
+      }) => (
+        <section style=`--medium-color: ${medium.color?.hex || "#ff00ff"}` class="medium" id={medium.slug.current}>
+          <div class="intro">
+            {medium.artwork?.code && (
+              <h1 set:html={medium.artwork.code + medium.name} />
+            )}
+
+            <p>
+              <PortableText value={medium.description} />
+            </p>
+          </div>
+
+          <div class="column headline">
+            <h2 class="sticky bubble">{medium.name}</h2>
+          </div>
+          <div class="column sections">
+            {medium.sections?.map((section: unknown) => (
+              <Section section={section} />
+            ))}
+          </div>
+        </section>
+      )
+    )
+  }
+</main>
+
+<style is:global>
+  :root {
+    --column-width: 100px;
+    --tab-size: 30px;
+    --tab-width: 100px;
+  }
+
+  .sticky {
+    position: sticky !important;
+    top: calc(var(--header-height) + 2 * var(--padding));
+  }
+
+  .bubble {
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    height: fit-content;
+    background: var(--bubble-color);
+    text-wrap: wrap;
+  }
+
+  .bubble.nothing-found {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .medium h1 svg {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+  }
+
+  .medium {
+    padding: var(--border-radius-tall);
+    border-radius: var(--border-radius-tall);
+    background: var(--medium-color);
+
+    background: color-mix(in srgb, white 60%, var(--medium-color));
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--padding);
+  }
+</style>
+
+<style>
+  main {
+    background: var(--color-black);
+    padding: var(--padding-gap);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: var(--padding-gap);
+  }
+
+  
+
+  h1 {
+    font-size: 0;
+    text-transform: capitalize;
+    margin-bottom: var(--border-radius-tall);
+  }
+
+  .intro {
+    flex: 0 0 100%;
+    margin-bottom: var(--border-radius-tall);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column.headline {
+    flex: 0 0 var(--column-width);
+  }
+
+  .column.sections {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--tab-size) + var(--padding));
+    flex:0;
+  }
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  .bubble {
+    --bubble-color: var(--medium-color);
+  }
+</style>
